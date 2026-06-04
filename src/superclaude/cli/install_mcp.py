@@ -24,9 +24,9 @@ AIRIS_GATEWAY = {
     "transport": "sse",
     "endpoint": "http://localhost:9400/sse",
     "docker_compose_url": "https://raw.githubusercontent.com/agiletec-inc/airis-mcp-gateway/main/docker-compose.dist.yml",
-    "docker_compose_sha256": None,  # Set to pin integrity; None skips check
+    "docker_compose_sha256": None,  # PIN THIS before use: sha256sum of docker-compose.dist.yml
     "mcp_config_url": "https://raw.githubusercontent.com/agiletec-inc/airis-mcp-gateway/main/config/mcp-config.template.json",
-    "mcp_config_sha256": None,  # Set to pin integrity; None skips check
+    "mcp_config_sha256": None,  # PIN THIS before use: sha256sum of mcp-config.template.json
     "repository": "https://github.com/agiletec-inc/airis-mcp-gateway",
 }
 
