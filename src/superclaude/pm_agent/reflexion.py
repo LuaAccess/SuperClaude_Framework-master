@@ -175,6 +175,12 @@ class ReflexionPattern:
             Solution dict if found, None if mindbase unavailable or no match
         """
         import subprocess
+        import urllib.parse
+
+        # SECURITY: Only allow localhost connections — never send data externally.
+        parsed = urllib.parse.urlparse("http://localhost:18003/api/search")
+        if parsed.hostname not in ("localhost", "127.0.0.1", "::1"):
+            return None  # Refuse non-local endpoints
 
         try:
             # Query mindbase via its HTTP API (default port from AIRIS config)
