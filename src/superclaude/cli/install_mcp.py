@@ -183,6 +183,24 @@ def install_airis_gateway(dry_run: bool = False) -> bool:
         "   This provides 60+ tools through a single endpoint with 98% token reduction.\n"
     )
 
+    # SECURITY WARNING: Downloads files from third-party org (agiletec-inc).
+    # SHA-256 integrity checks are currently disabled (None).
+    # Proceed only if you trust this source and have reviewed the files.
+    if AIRIS_GATEWAY["docker_compose_sha256"] is None:
+        click.echo(
+            "   ⚠️  SECURITY NOTICE: Integrity verification is not enabled.\n"
+            "   Files will be downloaded from github.com/agiletec-inc without\n"
+            "   SHA-256 verification. To enable verification, pin the hashes\n"
+            "   in install_mcp.py before proceeding.\n",
+            err=True,
+        )
+        if not dry_run:
+            if not click.confirm(
+                "   Continue without integrity verification?", default=False
+            ):
+                click.echo("   Installation cancelled.")
+                return False
+
     # Check Docker
     if not check_docker_available():
         click.echo("   ❌ Docker is required but not available.", err=True)
