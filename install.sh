@@ -150,8 +150,11 @@ install_uv() {
     fi
 
     print_info "Installing UV (this may take a moment)..."
-    if curl -LsSf https://astral.sh/uv/install.sh | sh; then
-        print_success "UV installed successfully"
+    print_error "UV is required but not installed."
+    print_info "Install UV manually (do NOT pipe curl to sh blindly):"
+    print_info "  Option 1: curl ... -o uv_install.sh && cat uv_install.sh && sh uv_install.sh"
+    print_info "  Option 2: brew install uv / pip install uv"
+    exit 1
 
         # Add UV to PATH for current session
         export PATH="$HOME/.cargo/bin:$PATH"
